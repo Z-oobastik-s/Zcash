@@ -1,0 +1,58 @@
+# ================================================================
+#                    ZCASH PROJECT GITIGNORE
+#                        Author: Zoobastiks
+# ================================================================
+
+# Gradle build files
+build/
+.gradle/
+gradle-wrapper.jar
+gradle-wrapper.properties
+gradlew
+gradlew.bat
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Upload scripts (contain sensitive tokens)
+upload_to_github.bat
+upload_with_token.bat
+
+# Logs and temporary files
+*.log
+*.tmp
+logs/
+temp/
+
+# Plugin JAR files (generated)
+*.jar
+
+# Backup files
+*.bak
+*.backup
+
+# Test outputs
+test-output/
+test-results/
+
+# Local development files
+local.properties
+
+# Security sensitive files
+tokens.txt
+secrets.yml
+credentials.json

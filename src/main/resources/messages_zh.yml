@@ -1,0 +1,88 @@
+# ====================================================
+#                   ZCASH PLUGIN MESSAGES (CHINESE)
+# ====================================================
+# Author: Zoobastiks
+# Contact: https://t.me/Zoobastiks
+# Version: 1.0.0
+# 
+# Simplified Chinese language file for the plugin.
+# ====================================================
+
+# Plugin status messages (for players)
+plugin-enabled: "<gradient:#350D1E:#09AD12>Zcash 已启用</gradient> &7作者: &bZoobastiks"
+plugin-disabled: "<gradient:#AD1209:#350D1E>Zcash 已禁用</gradient>"
+
+# Pickup messages
+pickup: "<gradient:#C51BF1:#C49BFB>您获得了 {amount} ⛃</gradient>"
+pickup-actionbar: "&6+{amount} ⛃"
+pickup-bossbar: "&6获得了 {amount} 硬币"
+pickup-title: "&6+{amount}"
+pickup-subtitle: "&7硬币"
+
+# Permission messages
+no-permission: "&#FF5555您没有权限使用此命令！"
+no-permission-reload: "&#FF5555您没有权限重新加载配置！"
+no-permission-give: "&#FF5555您没有权限给予货币！"
+no-permission-stats: "&#FF5555您没有权限查看统计！"
+
+# Command messages
+reload-success: "<gradient:#00FF00:#55FF55>配置重新加载成功！</gradient>"
+reload-error: "&#FF5555重新加载配置时出错！"
+
+# Give command messages
+give-usage: "&#FF5555用法: /zcash give <玩家> <数量>"
+give-success: "<gradient:#00FF00:#55FF55>您给了玩家 {player} {amount} 硬币！</gradient>"
+give-received: "<gradient:#FFD700:#FFFF00>您收到了 {amount} 硬币！</gradient>"
+give-player-not-found: "&#FF5555玩家 {player} 未找到！"
+give-invalid-amount: "&#FF5555无效的货币数量！请使用正数。"
+
+# Statistics messages
+stats-header: "<gradient:#4A90E2:#7B68EE>===== {player} 的统计 =====</gradient>"
+stats-earned-mobs: "&7从怪物获得: &a{amount} 硬币"
+stats-earned-blocks: "&7从方块获得: &a{amount} 硬币"
+stats-total-earned: "&7总计获得: &a{amount} 硬币"
+stats-not-found: "&#FF5555未找到玩家 {player} 的统计！"
+
+# Statistics reset notification
+statistics-reset-broadcast: "<gradient:#FF6B6B:#4ECDC4>所有玩家统计已重置！</gradient>"
+
+# Help messages
+help-header: "<gradient:#4A90E2:#7B68EE>===== Zcash 命令 =====</gradient>"
+help-main: "&7/zcash &8- &f主插件命令"
+help-reload: "&7/zcash reload &8- &f重新加载配置"
+help-give: "&7/zcash give <玩家> <数量> &8- &f给玩家货币"
+help-stats: "&7/zcash stats [玩家] &8- &f查看统计"
+help-language: "&7/zcash language &8- &f打开语言选择菜单"
+help-help: "&7/zcash help &8- &f显示此消息"
+
+# Language GUI messages
+language-gui-title: "&6&l语言选择"
+language-gui-russian: "&c俄语"
+language-gui-russian-lore: "&7点击切换到俄语"
+language-gui-english: "&9英语"
+language-gui-english-lore: "&7点击切换到英语"
+language-gui-chinese: "&e简体中文"
+language-gui-chinese-lore: "&7点击切换到简体中文"
+language-changed: "<gradient:#00FF00:#55FF55>语言已切换为简体中文！</gradient>"
+
+# Economy messages
+economy-not-available: "&#FF5555经济系统不可用！"
+economy-transaction-failed: "&#FF5555处理交易失败！"
+
+# Debug messages
+currency-dropped: "&7货币掉落: &a{amount} 硬币"
+
+# Error messages
+unknown-command: "&#FF5555未知命令！使用 /zcash help"
+command-error: "&#FF5555执行命令时发生错误！"
+config-error: "&#FF5555配置错误！"
+
+# Console messages
+console-cannot-use: "此命令无法从控制台执行！"
+
+# World messages
+world-disabled: "&#FF5555Zcash插件在此世界中已禁用！"
+world-not-allowed: "&#FF5555您无法在此世界中使用货币！"
+
+# Hologram messages
+hologram-text: "&6{amount} ⛃"

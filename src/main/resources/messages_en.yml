@@ -1,0 +1,88 @@
+# ====================================================
+#                   ZCASH PLUGIN MESSAGES (ENGLISH)
+# ====================================================
+# Author: Zoobastiks
+# Contact: https://t.me/Zoobastiks
+# Version: 1.0.0
+# 
+# English language file for the plugin.
+# ====================================================
+
+# Plugin status messages (for players)
+plugin-enabled: "<gradient:#350D1E:#09AD12>Zcash enabled</gradient> &7Author: &bZoobastiks"
+plugin-disabled: "<gradient:#AD1209:#350D1E>Zcash disabled</gradient>"
+
+# Pickup messages
+pickup: "<gradient:#C51BF1:#C49BFB>You picked up {amount} ⛃</gradient>"
+pickup-actionbar: "&6+{amount} ⛃"
+pickup-bossbar: "&6Picked up {amount} coins"
+pickup-title: "&6+{amount}"
+pickup-subtitle: "&7coins"
+
+# Permission messages
+no-permission: "&#FF5555You don't have permission to use this command!"
+no-permission-reload: "&#FF5555You don't have permission to reload configuration!"
+no-permission-give: "&#FF5555You don't have permission to give currency!"
+no-permission-stats: "&#FF5555You don't have permission to view statistics!"
+
+# Command messages
+reload-success: "<gradient:#00FF00:#55FF55>Configuration successfully reloaded!</gradient>"
+reload-error: "&#FF5555Error reloading configuration!"
+
+# Give command messages
+give-usage: "&#FF5555Usage: /zcash give <player> <amount>"
+give-success: "<gradient:#00FF00:#55FF55>You gave {amount} coins to player {player}!</gradient>"
+give-received: "<gradient:#FFD700:#FFFF00>You received {amount} coins!</gradient>"
+give-player-not-found: "&#FF5555Player {player} not found!"
+give-invalid-amount: "&#FF5555Invalid currency amount! Use a positive number."
+
+# Statistics messages
+stats-header: "<gradient:#4A90E2:#7B68EE>===== Statistics for {player} =====</gradient>"
+stats-earned-mobs: "&7Earned from mobs: &a{amount} coins"
+stats-earned-blocks: "&7Earned from blocks: &a{amount} coins"
+stats-total-earned: "&7Total earned: &a{amount} coins"
+stats-not-found: "&#FF5555Statistics for player {player} not found!"
+
+# Statistics reset notification
+statistics-reset-broadcast: "<gradient:#FF6B6B:#4ECDC4>All player statistics have been reset!</gradient>"
+
+# Help messages
+help-header: "<gradient:#4A90E2:#7B68EE>===== Zcash Commands =====</gradient>"
+help-main: "&7/zcash &8- &fMain plugin command"
+help-reload: "&7/zcash reload &8- &fReload configuration"
+help-give: "&7/zcash give <player> <amount> &8- &fGive currency to player"
+help-stats: "&7/zcash stats [player] &8- &fView statistics"
+help-language: "&7/zcash language &8- &fOpen language selection menu"
+help-help: "&7/zcash help &8- &fShow this message"
+
+# Language GUI messages
+language-gui-title: "&6&lLanguage Selection"
+language-gui-russian: "&cRussian"
+language-gui-russian-lore: "&7Click to switch to Russian"
+language-gui-english: "&9English"
+language-gui-english-lore: "&7Click to switch to English"
+language-gui-chinese: "&eSimplified Chinese"
+language-gui-chinese-lore: "&7Click to switch to Chinese"
+language-changed: "<gradient:#00FF00:#55FF55>Language changed to English!</gradient>"
+
+# Economy messages
+economy-not-available: "&#FF5555Economy system unavailable!"
+economy-transaction-failed: "&#FF5555Failed to process transaction!"
+
+# Debug messages
+currency-dropped: "&7Currency dropped: &a{amount} coins"
+
+# Error messages
+unknown-command: "&#FF5555Unknown command! Use /zcash help"
+command-error: "&#FF5555An error occurred while executing the command!"
+config-error: "&#FF5555Configuration error!"
+
+# Console messages
+console-cannot-use: "This command cannot be executed from console!"
+
+# World messages
+world-disabled: "&#FF5555Zcash plugin is disabled in this world!"
+world-not-allowed: "&#FF5555You cannot use currency in this world!"
+
+# Hologram messages
+hologram-text: "&6{amount} ⛃"

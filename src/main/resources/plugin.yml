@@ -1,0 +1,37 @@
+name: Zcash
+version: ${version}
+main: com.zoobastiks.zcash.ZcashPlugin
+api-version: 1.21
+authors: [Zoobastiks]
+description: Plugin for dropping currency when killing mobs and mining blocks
+website: https://t.me/Zoobastiks
+softdepend: [Vault, Essentials]
+
+commands:
+  zcash:
+    description: Main Zcash command
+    usage: /zcash [reload|give|stats|help]
+    permission: zcash.use
+    aliases: [zcoin, zmoney]
+
+permissions:
+  zcash.use:
+    description: Basic Zcash command usage
+    default: true
+  zcash.reload:
+    description: Reload Zcash configs
+    default: op
+  zcash.give:
+    description: Give currency to players
+    default: op
+  zcash.stats:
+    description: View player stats
+    default: true
+  zcash.admin:
+    description: All Zcash permissions
+    default: op
+    children:
+      zcash.use: true
+      zcash.reload: true
+      zcash.give: true
+      zcash.stats: true

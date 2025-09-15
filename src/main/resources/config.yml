@@ -1,0 +1,810 @@
+# ====================================================
+#                   ZCASH PLUGIN CONFIG
+# ====================================================
+# Author: Zoobastiks
+# Contact: https://t.me/Zoobastiks
+# Version: 1.0.0
+# 
+# This plugin adds currency drops from mobs and blocks
+# with advanced features like statistics, notifications,
+# and optimization systems.
+# ====================================================
+
+# ====================================================
+#                  ECONOMY SETTINGS
+# ====================================================
+# Configure how the plugin integrates with economy systems
+economy:
+  # Use Vault API for economy integration (recommended)
+  # Requires Vault plugin and any economy plugin (like EssentialsX)
+  use_vault: true
+  
+  # If Vault fails, try EssentialsX directly as fallback
+  # This ensures economy works even without Vault
+  fallback_to_essentials: true
+
+# ====================================================
+#                  GENERAL SETTINGS
+# ====================================================
+# Basic plugin behavior configuration
+general:
+  # Plugin language (messages file to use)
+  # Available: "ru" (messages.yml), "en" (messages_en.yml), "zh" (messages_zh.yml)
+  language: "en"
+  
+  # Default currency amount when mob/block not configured
+  # Format: "min-max" for range or "exact" for fixed amount
+  # Examples: "1-5", "10", "2-8"
+  default_amount: "1-2"
+  
+  # Default drop chance percentage (1-100)
+  # 100 = always drop, 50 = 50% chance, 1 = 1% chance
+  default_chance: 100
+  
+  # Amount for unknown/unconfigured mobs
+  unknown_mob_amount: 1
+
+# ====================================================
+#                   WORLD SETTINGS
+# ====================================================
+# Configure in which worlds the plugin should work
+worlds:
+  # World filter mode:
+  # "whitelist" - only work in specified worlds
+  # "blacklist" - work in all worlds except specified
+  # "all" - work in all worlds (ignore world lists)
+  mode: "all"
+  
+  # List of worlds (case-sensitive)
+  # Used depending on the mode above
+  # Examples: ["world", "world_nether", "world_the_end"]
+  list:
+    - "world"
+    - "world_nether"
+    - "world_the_end"
+  
+  # Whether to show messages when plugin is disabled in a world
+  show_disabled_messages: false
+
+# ====================================================
+#                  VISUAL SETTINGS
+# ====================================================
+# Configure how currency appears in the world
+visual:
+  # Material used for currency items on ground
+  # Valid materials: GOLD_NUGGET, GOLD_INGOT, EMERALD, etc.
+  display_item: GOLD_NUGGET
+  
+  # Show floating text above currency items
+  show_hologram: true
+  
+  # Height of hologram above item (in blocks)
+  # Positive = above item, negative = below item
+  hologram_height: -0.7
+
+# ====================================================
+#                   SOUND SETTINGS
+# ====================================================
+# Configure audio feedback when picking up currency
+sounds:
+  # Enable sound effects on currency pickup
+  pickup_enabled: true
+  
+  # Sound to play when picking up currency
+  # Valid sounds: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+  # Examples: "minecraft:entity.experience_orb.pickup", "minecraft:block.note_block.pling"
+  pickup_sound: "minecraft:item.honeycomb.wax_on"
+  
+  # Sound volume (0.0 = silent, 1.0 = normal, 2.0 = loud)
+  pickup_volume: 1.0
+  
+  # Sound pitch (0.5 = low, 1.0 = normal, 2.0 = high)
+  pickup_pitch: 1.0
+
+# ====================================================
+#                STATISTICS SETTINGS
+# ====================================================
+# Configure player statistics tracking and auto-reset
+statistics:
+  # Enable automatic statistics reset
+  reset_enabled: true
+  
+  # Reset frequency: DAILY, WEEKLY, MONTHLY
+  # DAILY = every day at specified time
+  # WEEKLY = every Monday at specified time
+  # MONTHLY = 1st of every month at specified time
+  reset_type: "DAILY"
+  
+  # Time to reset statistics (24-hour format: HH:mm)
+  # Examples: "00:00" = midnight, "12:00" = noon, "18:30" = 6:30 PM
+  reset_time: "00:00"
+
+# ====================================================
+#               OPTIMIZATION SETTINGS
+# ====================================================
+# Performance and server optimization features
+optimization:
+  # Automatically stack nearby currency items together
+  # Reduces lag from many currency items on ground
+  stack_currency: true
+  
+  # Radius in blocks to search for stackable currency
+  # Higher values = more stacking but more CPU usage
+  stack_radius: 3.0
+  
+  # Time in seconds before currency automatically despawns
+  # Prevents world from filling with uncollected currency
+  # 300 seconds = 5 minutes
+  despawn_time: 300
+  
+  # Distance in blocks where currency becomes hidden from players
+  # Helps performance by hiding distant currency items
+  # 15.0 = currency invisible beyond 15 blocks
+  hide_distance: 15.0
+
+# ====================================================
+#               NOTIFICATION SETTINGS
+# ====================================================
+# Configure how players are notified about currency pickup
+notifications:
+  # Notification display method when picking up currency
+  # Available types:
+  # - CHAT: Message in chat
+  # - ACTIONBAR: Text above hotbar
+  # - BOSSBAR: Boss bar at top of screen
+  # - TITLE: Large title text in center
+  # - NONE: No notification
+  pickup_type: "ACTIONBAR"
+  
+  # Duration for BOSSBAR display (in seconds)
+  bossbar_duration: 3
+  
+  # BOSSBAR color: WHITE, PINK, BLUE, RED, GREEN, YELLOW, PURPLE
+  bossbar_color: "YELLOW"
+  
+  # BOSSBAR style: SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+  bossbar_style: "SOLID"
+  
+  # TITLE animation timing (in ticks, 20 ticks = 1 second)
+  title_fade_in: 10    # Time to fade in
+  title_stay: 40       # Time to stay visible
+  title_fade_out: 10   # Time to fade out
+
+# ====================================================
+#                  COMMAND SETTINGS
+# ====================================================
+# Configure additional commands executed on currency pickup
+# SECURITY WARNING: These commands run as console with OP permissions!
+# Only add trusted commands and validate all placeholders
+
+# Enable/disable command execution on pickup
+enable-commands: false
+
+commands:
+  pickup:
+    # Commands executed when player picks up currency
+    # Available placeholders:
+    # {player} - Player name
+    # {amount} - Currency amount picked up
+    # {nbt} - NBT data (usually empty)
+    
+    # Give currency to player's balance
+    - "eco give {player} {amount}"
+    
+    # Example: Give bonus items (uncomment to enable)
+    #- "give {player} cookie 1"
+    
+    # Example: Execute custom plugin commands
+    #- "mypoints add {player} {amount}"
+
+# ====================================================
+#                    MOB SETTINGS
+# ====================================================
+# Configure currency drops for each mob type
+# Format:
+# mob_name:
+#   amount: "min-max" or exact number
+#   chance: percentage (1-100)
+
+mobs:
+  # ==================== HOSTILE MOBS ====================
+  zombie:
+    amount: "1-3"    # 1 to 3 currency
+    chance: 50       # 50% drop chance
+  
+  skeleton:
+    amount: "1-2"
+    chance: 45
+  
+  creeper:
+    amount: 5        # Always 5 currency
+    chance: 20       # 20% drop chance
+  
+  spider:
+    amount: "1-2"
+    chance: 40
+  
+  enderman:
+    amount: "3-5"
+    chance: 30
+  
+  witch:
+    amount: "2-4"
+    chance: 35
+  
+  blaze:
+    amount: "3-6"
+    chance: 25
+  
+  wither_skeleton:
+    amount: "5-10"
+    chance: 15
+  
+  ghast:
+    amount: "4-8"
+    chance: 20
+  
+  slime:
+    amount: "1-2"
+    chance: 50
+  
+  magma_cube:
+    amount: "2-3"
+    chance: 40
+  
+  drowned:
+    amount: "2-3"
+    chance: 40
+  
+  husk:
+    amount: "1-3"
+    chance: 45
+  
+  stray:
+    amount: "1-2"
+    chance: 45
+  
+  zombie_villager:
+    amount: "3-5"
+    chance: 25
+  
+  vindicator:
+    amount: "4-7"
+    chance: 20
+  
+  evoker:
+    amount: "8-12"
+    chance: 10
+  
+  pillager:
+    amount: "2-4"
+    chance: 35
+  
+  ravager:
+    amount: "10-15"
+    chance: 8
+  
+  vex:
+    amount: "1-2"
+    chance: 50
+  
+  silverfish:
+    amount: 1
+    chance: 60
+  
+  endermite:
+    amount: 1
+    chance: 55
+  
+  cave_spider:
+    amount: "1-2"
+    chance: 45
+  
+  piglin:
+    amount: "2-4"
+    chance: 30
+  
+  piglin_brute:
+    amount: "5-8"
+    chance: 15
+  
+  zombified_piglin:
+    amount: "1-3"
+    chance: 40
+  
+  hoglin:
+    amount: "3-5"
+    chance: 25
+  
+  zoglin:
+    amount: "4-6"
+    chance: 20
+  
+  phantom:
+    amount: "2-4"
+    chance: 30
+  
+  guardian:
+    amount: "3-6"
+    chance: 25
+  
+  elder_guardian:
+    amount: "20-40"
+    chance: 10
+  
+  shulker:
+    amount: "8-15"
+    chance: 15
+  
+  # ==================== BOSS MOBS ====================
+  warden:
+    amount: "50-100"
+    chance: 1        # Very rare but huge reward
+  
+  ender_dragon:
+    amount: "100-200"
+    chance: 100      # Always drops on kill
+  
+  wither:
+    amount: "75-150"
+    chance: 100
+  
+  # ==================== PASSIVE MOBS ====================
+  pig:
+    amount: "1-2"
+    chance: 60
+  
+  cow:
+    amount: "1-3"
+    chance: 55
+  
+  sheep:
+    amount: "1-2"
+    chance: 60
+  
+  chicken:
+    amount: 1
+    chance: 70
+  
+  rabbit:
+    amount: 1
+    chance: 65
+  
+  horse:
+    amount: "2-4"
+    chance: 40
+  
+  donkey:
+    amount: "2-4"
+    chance: 40
+  
+  mule:
+    amount: "2-4"
+    chance: 40
+  
+  llama:
+    amount: "2-3"
+    chance: 45
+  
+  wolf:
+    amount: "1-2"
+    chance: 50
+  
+  cat:
+    amount: "1-2"
+    chance: 50
+  
+  ocelot:
+    amount: "1-2"
+    chance: 50
+  
+  fox:
+    amount: "1-3"
+    chance: 45
+  
+  panda:
+    amount: "2-4"
+    chance: 35
+  
+  polar_bear:
+    amount: "3-5"
+    chance: 30
+  
+  villager:
+    amount: "5-10"
+    chance: 10       # Low chance - don't encourage villager killing
+  
+  wandering_trader:
+    amount: "8-15"
+    chance: 5
+  
+  iron_golem:
+    amount: "10-20"
+    chance: 5
+  
+  snow_golem:
+    amount: "1-3"
+    chance: 60
+  
+  strider:
+    amount: "2-3"
+    chance: 40
+
+# ====================================================
+#                   BLOCK SETTINGS
+# ====================================================
+# Configure currency drops for each block type
+# Format same as mobs: amount and chance
+
+blocks:
+  # ==================== STONE TYPES ====================
+  stone:
+    amount: 1
+    chance: 10
+  
+  cobblestone:
+    amount: 1
+    chance: 8
+  
+  deepslate:
+    amount: 1
+    chance: 12
+  
+  cobbled_deepslate:
+    amount: 1
+    chance: 10
+  
+  granite:
+    amount: 1
+    chance: 8
+  
+  diorite:
+    amount: 1
+    chance: 8
+  
+  andesite:
+    amount: 1
+    chance: 8
+  
+  # ==================== EARTH BLOCKS ====================
+  dirt:
+    amount: "1-2"
+    chance: 30
+  
+  grass_block:
+    amount: "1-2"
+    chance: 25
+  
+  sand:
+    amount: 1
+    chance: 15
+  
+  gravel:
+    amount: 1
+    chance: 18
+  
+  red_sand:
+    amount: 1
+    chance: 15
+  
+  clay:
+    amount: "1-2"
+    chance: 20
+  
+  moss_block:
+    amount: "1-2"
+    chance: 25
+  
+  podzol:
+    amount: "1-2"
+    chance: 20
+  
+  mycelium:
+    amount: "1-2"
+    chance: 20
+  
+  # ==================== ORES ====================
+  coal_ore:
+    amount: "2-4"
+    chance: 40
+  
+  iron_ore:
+    amount: "3-5"
+    chance: 35
+  
+  copper_ore:
+    amount: "2-3"
+    chance: 30
+  
+  gold_ore:
+    amount: "4-6"
+    chance: 25
+  
+  redstone_ore:
+    amount: "2-4"
+    chance: 30
+  
+  lapis_ore:
+    amount: "3-5"
+    chance: 25
+  
+  diamond_ore:
+    amount: "8-12"
+    chance: 15
+  
+  emerald_ore:
+    amount: "10-15"
+    chance: 10
+  
+  nether_quartz_ore:
+    amount: "3-5"
+    chance: 25
+  
+  nether_gold_ore:
+    amount: "4-6"
+    chance: 20
+  
+  ancient_debris:
+    amount: "20-30"
+    chance: 5        # Very rare, very valuable
+  
+  # ==================== DEEPSLATE ORES ====================
+  deepslate_coal_ore:
+    amount: "2-4"
+    chance: 40
+  
+  deepslate_iron_ore:
+    amount: "3-5"
+    chance: 35
+  
+  deepslate_copper_ore:
+    amount: "2-3"
+    chance: 30
+  
+  deepslate_gold_ore:
+    amount: "4-6"
+    chance: 25
+  
+  deepslate_redstone_ore:
+    amount: "2-4"
+    chance: 30
+  
+  deepslate_lapis_ore:
+    amount: "3-5"
+    chance: 25
+  
+  deepslate_diamond_ore:
+    amount: "8-12"
+    chance: 15
+  
+  deepslate_emerald_ore:
+    amount: "10-15"
+    chance: 10
+  
+  # ==================== WOOD ====================
+  oak_log:
+    amount: "1-2"
+    chance: 20
+  
+  birch_log:
+    amount: "1-2"
+    chance: 20
+  
+  spruce_log:
+    amount: "1-2"
+    chance: 20
+  
+  jungle_log:
+    amount: "1-2"
+    chance: 20
+  
+  acacia_log:
+    amount: "1-2"
+    chance: 20
+  
+  dark_oak_log:
+    amount: "1-2"
+    chance: 20
+  
+  mangrove_log:
+    amount: "1-2"
+    chance: 20
+  
+  cherry_log:
+    amount: "1-2"
+    chance: 20
+  
+  crimson_stem:
+    amount: "1-2"
+    chance: 18
+  
+  warped_stem:
+    amount: "1-2"
+    chance: 18
+  
+  # ==================== LEAVES ====================
+  oak_leaves:
+    amount: 1
+    chance: 5
+  
+  birch_leaves:
+    amount: 1
+    chance: 5
+  
+  spruce_leaves:
+    amount: 1
+    chance: 5
+  
+  jungle_leaves:
+    amount: 1
+    chance: 5
+  
+  acacia_leaves:
+    amount: 1
+    chance: 5
+  
+  dark_oak_leaves:
+    amount: 1
+    chance: 5
+  
+  mangrove_leaves:
+    amount: 1
+    chance: 5
+  
+  cherry_leaves:
+    amount: 1
+    chance: 5
+  
+  azalea_leaves:
+    amount: 1
+    chance: 5
+  
+  flowering_azalea_leaves:
+    amount: 1
+    chance: 5
+  
+  # ==================== CROPS ====================
+  wheat:
+    amount: 1
+    chance: 25
+  
+  carrots:
+    amount: 1
+    chance: 25
+  
+  potatoes:
+    amount: 1
+    chance: 25
+  
+  beetroots:
+    amount: 1
+    chance: 25
+  
+  sugar_cane:
+    amount: 1
+    chance: 20
+  
+  cactus:
+    amount: 1
+    chance: 15
+  
+  bamboo:
+    amount: 1
+    chance: 10
+  
+  kelp:
+    amount: 1
+    chance: 15
+  
+  sea_pickle:
+    amount: "1-2"
+    chance: 20
+  
+  melon:
+    amount: "2-3"
+    chance: 30
+  
+  pumpkin:
+    amount: "2-3"
+    chance: 30
+  
+  cocoa:
+    amount: "1-2"
+    chance: 25
+  
+  sweet_berry_bush:
+    amount: 1
+    chance: 20
+  
+  nether_wart:
+    amount: "1-2"
+    chance: 20
+  
+  # ==================== SPECIAL BLOCKS ====================
+  obsidian:
+    amount: "5-8"
+    chance: 8
+  
+  crying_obsidian:
+    amount: "6-10"
+    chance: 6
+  
+  netherrack:
+    amount: 1
+    chance: 5
+  
+  soul_sand:
+    amount: 1
+    chance: 8
+  
+  soul_soil:
+    amount: 1
+    chance: 8
+  
+  basalt:
+    amount: 1
+    chance: 6
+  
+  blackstone:
+    amount: 1
+    chance: 7
+  
+  end_stone:
+    amount: 1
+    chance: 10
+  
+  purpur_block:
+    amount: "1-2"
+    chance: 12
+  
+  # ==================== OCEAN BLOCKS ====================
+  prismarine:
+    amount: "2-3"
+    chance: 15
+  
+  dark_prismarine:
+    amount: "2-4"
+    chance: 12
+  
+  prismarine_bricks:
+    amount: "2-3"
+    chance: 13
+  
+  sea_lantern:
+    amount: "3-5"
+    chance: 10
+  
+  sponge:
+    amount: "5-8"
+    chance: 5
+  
+  wet_sponge:
+    amount: "5-8"
+    chance: 5
+
+# ====================================================
+#                     NOTES
+# ====================================================
+# 
+# PLACEHOLDERS available in messages:
+# {player} - Player name
+# {amount} - Currency amount
+# {nbt} - NBT data (for commands)
+# 
+# PERMISSIONS:
+# zcash.use - Basic command usage
+# zcash.reload - Reload configuration 
+# zcash.give - Give currency to players
+# zcash.stats - View statistics
+# zcash.admin - All permissions
+# 
+# COMMANDS:
+# /zcash - Main command
+# /zcash reload - Reload configs
+# /zcash give <player> <amount> - Give currency
+# /zcash stats [player] - View statistics
+# /zcash help - Show help
+# 
+# ALIASES: /zcoin, /zmoney
+# 
+# ====================================================

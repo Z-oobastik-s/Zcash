@@ -1,0 +1,189 @@
+# ====================================================
+#                   ZCASH PLUGIN MESSAGES
+# ====================================================
+# Author: Zoobastiks
+# Contact: https://t.me/Zoobastiks
+# Version: 1.0.0
+# 
+# This file contains all user-facing messages for the plugin.
+# You can customize these messages to match your server's style.
+# 
+# FORMATTING SUPPORTED:
+# - Standard Bukkit color codes: &a, &b, &c, etc.
+# - Hex colors: &#FF5555, &#00FF00, etc.
+# - Gradients: <gradient:#color1:#color2>text</gradient>
+# 
+# PLACEHOLDERS:
+# {player} - Player name
+# {amount} - Currency amount
+# {nbt} - NBT data
+# ====================================================
+
+# ====================================================
+#                PLUGIN STATUS MESSAGES
+# ====================================================
+# Messages shown to players when plugin loads/unloads
+# (Console messages are hardcoded for security)
+
+plugin-enabled: "<gradient:#350D1E:#09AD12>Zcash включён</gradient> &7Автор: &bZoobastiks"
+plugin-disabled: "<gradient:#AD1209:#350D1E>Zcash выключен</gradient>"
+
+# ====================================================
+#                  PICKUP MESSAGES
+# ====================================================
+# Messages shown when players pick up currency
+# Different message types for different notification methods
+
+# Chat message (when notification type = CHAT)
+pickup: "<gradient:#C51BF1:#C49BFB>Вы подобрали {amount} ⛃</gradient>"
+
+# Action bar message (when notification type = ACTIONBAR)
+pickup-actionbar: "&6+{amount} ⛃"
+
+# Boss bar message (when notification type = BOSSBAR)
+pickup-bossbar: "&6Подобрано {amount} монет"
+
+# Title messages (when notification type = TITLE)
+pickup-title: "&6+{amount}"
+pickup-subtitle: "&7монет"
+
+# ====================================================
+#                 PERMISSION MESSAGES
+# ====================================================
+# Messages shown when players lack required permissions
+
+no-permission: "&#FF5555У вас нет прав для выполнения этой команды!"
+no-permission-reload: "&#FF5555У вас нет прав для перезагрузки конфигурации!"
+no-permission-give: "&#FF5555У вас нет прав для выдачи валюты!"
+no-permission-stats: "&#FF5555У вас нет прав для просмотра статистики!"
+
+# ====================================================
+#                  COMMAND MESSAGES
+# ====================================================
+# Messages for command results and feedback
+
+# Reload command
+reload-success: "<gradient:#00FF00:#55FF55>Конфигурация успешно перезагружена!</gradient>"
+reload-error: "&#FF5555Ошибка при перезагрузке конфигурации!"
+
+# Give command messages
+give-usage: "&#FF5555Использование: /zcash give <игрок> <количество>"
+give-success: "<gradient:#00FF00:#55FF55>Вы выдали {amount} монет игроку {player}!</gradient>"
+give-received: "<gradient:#FFD700:#FFFF00>Вам выдали {amount} монет!</gradient>"
+give-player-not-found: "&#FF5555Игрок {player} не найден!"
+give-invalid-amount: "&#FF5555Неверное количество валюты! Используйте положительное число."
+
+# ====================================================
+#                 STATISTICS MESSAGES
+# ====================================================
+# Messages for the statistics system
+
+stats-header: "<gradient:#4A90E2:#7B68EE>===== Статистика игрока {player} =====</gradient>"
+stats-earned-mobs: "&7Заработано с мобов: &a{amount} монет"
+stats-earned-blocks: "&7Заработано с блоков: &a{amount} монет"
+stats-total-earned: "&7Всего заработано: &a{amount} монет"
+stats-not-found: "&#FF5555Статистика для игрока {player} не найдена!"
+
+# Statistics reset notification (broadcast to all players)
+statistics-reset-broadcast: "<gradient:#FF6B6B:#4ECDC4>Статистика всех игроков была сброшена!</gradient>"
+
+# ====================================================
+#                    HELP MESSAGES
+# ====================================================
+# Help command content
+
+help-header: "<gradient:#4A90E2:#7B68EE>===== Команды Zcash =====</gradient>"
+help-main: "&7/zcash &8- &fГлавная команда плагина"
+help-reload: "&7/zcash reload &8- &fПерезагрузить конфигурацию"
+help-give: "&7/zcash give <игрок> <количество> &8- &fВыдать валюту игроку"
+help-stats: "&7/zcash stats [игрок] &8- &fПосмотреть статистику"
+help-language: "&7/zcash language &8- &fОткрыть меню выбора языка"
+help-help: "&7/zcash help &8- &fПоказать это сообщение"
+
+# Language GUI messages
+language-gui-title: "&6&lВыбор языка"
+language-gui-russian: "&cРусский"
+language-gui-russian-lore: "&7Нажмите, чтобы переключиться на русский"
+language-gui-english: "&9Английский"
+language-gui-english-lore: "&7Нажмите, чтобы переключиться на английский"
+language-gui-chinese: "&eКитайский (упрощенный)"
+language-gui-chinese-lore: "&7Нажмите, чтобы переключиться на китайский"
+language-changed: "<gradient:#00FF00:#55FF55>Язык изменен на русский!</gradient>"
+
+# ====================================================
+#                  ECONOMY MESSAGES
+# ====================================================
+# Messages related to economy transactions
+
+economy-not-available: "&#FF5555Экономическая система недоступна!"
+economy-transaction-failed: "&#FF5555Не удалось выполнить транзакцию!"
+
+# ====================================================
+#                   DEBUG MESSAGES
+# ====================================================
+# Optional debug messages (shown when debug.show_drops = true in config)
+
+currency-dropped: "&7Валюта выпала: &a{amount} монет"
+
+# ====================================================
+#                   ERROR MESSAGES
+# ====================================================
+# General error messages
+
+unknown-command: "&#FF5555Неизвестная команда! Используйте /zcash help"
+command-error: "&#FF5555Произошла ошибка при выполнении команды!"
+config-error: "&#FF5555Ошибка в конфигурации!"
+
+# ====================================================
+#                 CONSOLE MESSAGES
+# ====================================================
+# Special messages for console-only commands
+
+console-cannot-use: "Эта команда не может быть выполнена из консоли!"
+
+# World messages
+world-disabled: "&#FF5555Плагин Zcash отключен в этом мире!"
+world-not-allowed: "&#FF5555Вы не можете использовать валюту в этом мире!"
+
+# ====================================================
+#                 HOLOGRAM MESSAGES
+# ====================================================
+# Text displayed above currency items on ground
+
+# Text shown in hologram above dropped currency
+# Available placeholders: {amount}
+hologram-text: "&6{amount} ⛃"
+
+# ====================================================
+#                      NOTES
+# ====================================================
+# 
+# COLOR CODES:
+# &0 - Black        &8 - Dark Gray
+# &1 - Dark Blue    &9 - Blue  
+# &2 - Dark Green   &a - Green
+# &3 - Dark Aqua    &b - Aqua
+# &4 - Dark Red     &c - Red
+# &5 - Dark Purple  &d - Light Purple
+# &6 - Gold         &e - Yellow
+# &7 - Gray         &f - White
+# 
+# FORMATTING CODES:
+# &l - Bold         &o - Italic
+# &n - Underline    &m - Strikethrough
+# &k - Magic        &r - Reset
+# 
+# HEX COLOR EXAMPLES:
+# &#FF5555 - Red
+# &#00FF00 - Green  
+# &#0000FF - Blue
+# &#FFFF00 - Yellow
+# &#FF00FF - Magenta
+# &#00FFFF - Cyan
+# 
+# GRADIENT EXAMPLES:
+# <gradient:#FF0000:#00FF00>Rainbow text</gradient>
+# <gradient:#FFD700:#FFA500>Gold to orange</gradient>
+# <gradient:#FF69B4:#DA70D6>Pink gradient</gradient>
+# 
+# ====================================================
