@@ -57,6 +57,10 @@ class ConfigManager(private val plugin: ZcashPlugin) {
         }
     }
     
+    // Pickup settings
+    fun allowHopperPickup(): Boolean = config.getBoolean("pickup.allow_hopper_pickup", false)
+    fun allowHopperMinecartPickup(): Boolean = config.getBoolean("pickup.allow_hopper_minecart_pickup", false)
+    
     // Commands on pickup
     fun isCommandsEnabled(): Boolean = config.getBoolean("enable-commands", true)
     fun getPickupCommands(): List<String> = config.getStringList("commands.pickup")
@@ -100,6 +104,12 @@ class ConfigManager(private val plugin: ZcashPlugin) {
     fun getDespawnTime(): Int = config.getInt("optimization.despawn_time", 300)
     fun getHideDistance(): Double = config.getDouble("optimization.hide_distance", 15.0)
     
+    // Performance settings
+    fun getMaxItemsPerTick(): Int = config.getInt("optimization.performance.max_items_per_tick", 50)
+    fun getMaxStackChecks(): Int = config.getInt("optimization.performance.max_stack_checks", 10)
+    fun getMaxStackSize(): Int = config.getInt("optimization.performance.max_stack_size", 5)
+    fun getWarningThreshold(): Int = config.getInt("optimization.performance.warning_threshold", 200)
+    
     // Notification settings
     fun getPickupNotificationType(): String = config.getString("notifications.pickup_type", "ACTIONBAR") ?: "ACTIONBAR"
     fun getBossbarDuration(): Int = config.getInt("notifications.bossbar_duration", 3)
@@ -108,6 +118,13 @@ class ConfigManager(private val plugin: ZcashPlugin) {
     fun getTitleFadeIn(): Int = config.getInt("notifications.title_fade_in", 10)
     fun getTitleStay(): Int = config.getInt("notifications.title_stay", 40)
     fun getTitleFadeOut(): Int = config.getInt("notifications.title_fade_out", 10)
+    
+    // Anti-duplication settings
+    fun isAntiDuplicationEnabled(): Boolean = config.getBoolean("optimization.anti_duplication.enabled", true)
+    fun shouldPersistPlacedBlocks(): Boolean = config.getBoolean("optimization.anti_duplication.persist_data", false)
+    fun getMaxTrackedBlocks(): Int = config.getInt("optimization.anti_duplication.max_tracked_blocks", 50000)
+    fun getAutoCleanupInterval(): Int = config.getInt("optimization.anti_duplication.auto_cleanup_interval", 120)
+    fun getMaxBlockAge(): Int = config.getInt("optimization.anti_duplication.max_block_age", 240)
     
     // Helper method to parse amount ranges
     fun parseAmount(amountString: String): Int {

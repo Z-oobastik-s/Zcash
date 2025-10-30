@@ -27,6 +27,21 @@ class BlockBreakListener(private val plugin: ZcashPlugin) : Listener {
         // Don't drop if event is cancelled
         if (event.isCancelled) return
         
+        // ========================================
+        // ANTI-DUPLICATION CHECK (if enabled)
+        // ========================================
+        // Check if this block was placed by a player
+        // If yes, remove it from tracking and DON'T give currency
+        // This check is extremely fast O(1) and uses minimal CPU
+        if (plugin.configManager.isAntiDuplicationEnabled()) {
+            if (plugin.placedBlocksManager.isPlacedBlock(block.location)) {
+                // Remove from tracking since block is being broken
+                plugin.placedBlocksManager.removePlacedBlock(block.location)
+                // Don't give currency for player-placed blocks
+                return
+            }
+        }
+        
         val blockType = event.block.type.name.lowercase()
         
         // Get drop settings for this block

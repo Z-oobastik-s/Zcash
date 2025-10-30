@@ -83,6 +83,21 @@ visual:
   hologram_height: -0.7
 
 # ====================================================
+#                  PICKUP SETTINGS
+# ====================================================
+# Configure how currency can be picked up
+pickup:
+  # Allow hoppers to collect currency items
+  # true = hoppers can pick up coins (may cause issues with full player inventories)
+  # false = hoppers cannot pick up coins (recommended for better player experience)
+  allow_hopper_pickup: false
+  
+  # Allow hopper minecarts to collect currency items
+  # true = hopper minecarts can pick up coins
+  # false = hopper minecarts cannot pick up coins (recommended)
+  allow_hopper_minecart_pickup: false
+
+# ====================================================
 #                   SOUND SETTINGS
 # ====================================================
 # Configure audio feedback when picking up currency
@@ -141,6 +156,61 @@ optimization:
   # Helps performance by hiding distant currency items
   # 15.0 = currency invisible beyond 15 blocks
   hide_distance: 15.0
+  
+  # Performance limits to prevent server lag (ADVANCED SETTINGS)
+  # These settings help prevent the plugin from causing server freezes
+  # Only modify if you understand the performance implications
+  performance:
+    # Maximum currency items processed per optimization tick (every 2 seconds)
+    # Lower = better performance, Higher = faster processing
+    # Recommended: 30-100 depending on server hardware
+    max_items_per_tick: 50
+    
+    # Maximum nearby items checked during stacking operations
+    # Prevents lag when many items are dropped in one location
+    # Recommended: 5-15
+    max_stack_checks: 10
+    
+    # Maximum items that can be stacked together in one operation
+    # Prevents massive stacking operations that could freeze server
+    # Recommended: 3-10
+    max_stack_size: 5
+    
+    # Warn in console when total currency items exceed this number
+    # Helps administrators monitor potential performance issues
+    # Set to 0 to disable warnings
+    warning_threshold: 200
+  
+  # ==================== ANTI-DUPLICATION SETTINGS ====================
+  # Prevent players from placing and breaking blocks repeatedly to farm coins
+  anti_duplication:
+    # Enable tracking of player-placed blocks
+    # When disabled, players CAN exploit by placing/breaking blocks
+    # When enabled, blocks placed by players won't drop currency
+    enabled: true
+    
+    # Save placed blocks to file for persistence across server restarts
+    # true = blocks tracked even after restart (uses disk space)
+    # false = tracking resets on restart (better performance, less disk usage)
+    persist_data: false
+    
+    # Maximum number of blocks to track in memory
+    # When limit is reached, oldest 20% of blocks are removed
+    # Higher = more memory usage, Lower = more frequent cleanups
+    # Recommended: 10000-100000 depending on server size
+    max_tracked_blocks: 50000
+    
+    # Automatically clean old block data every X minutes
+    # Removes blocks older than specified time
+    # 0 = disabled (only clean when max_tracked_blocks is reached)
+    # Recommended: 60-180 minutes for active servers
+    auto_cleanup_interval: 120
+    
+    # Maximum age of tracked blocks in minutes before auto-cleanup
+    # Blocks older than this are removed during cleanup
+    # Only applies if auto_cleanup_interval > 0
+    # Recommended: 180-360 minutes (3-6 hours)
+    max_block_age: 240
 
 # ====================================================
 #               NOTIFICATION SETTINGS

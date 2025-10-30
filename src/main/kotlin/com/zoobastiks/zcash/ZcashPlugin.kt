@@ -6,12 +6,15 @@ import com.zoobastiks.zcash.config.MessagesManager
 import com.zoobastiks.zcash.database.DatabaseManager
 import com.zoobastiks.zcash.economy.EconomyManager
 import com.zoobastiks.zcash.listeners.BlockBreakListener
+import com.zoobastiks.zcash.listeners.BlockPlaceListener
 import com.zoobastiks.zcash.listeners.EntityDeathListener
+import com.zoobastiks.zcash.listeners.InventoryPickupListener
 import com.zoobastiks.zcash.listeners.PlayerPickupListener
 import com.zoobastiks.zcash.listeners.PlayerQuitListener
 import com.zoobastiks.zcash.scheduler.StatisticsResetScheduler
 import com.zoobastiks.zcash.managers.CurrencyOptimizationManager
 import com.zoobastiks.zcash.managers.NotificationManager
+import com.zoobastiks.zcash.managers.PlacedBlocksManager
 import com.zoobastiks.zcash.gui.LanguageGUI
 import com.zoobastiks.zcash.utils.HologramManager
 import com.zoobastiks.zcash.utils.MessageFormatter
@@ -50,6 +53,9 @@ class ZcashPlugin : JavaPlugin() {
     lateinit var languageGUI: LanguageGUI
         private set
     
+    lateinit var placedBlocksManager: PlacedBlocksManager
+        private set
+    
     companion object {
         lateinit var instance: ZcashPlugin
             private set
@@ -69,6 +75,7 @@ class ZcashPlugin : JavaPlugin() {
         currencyOptimizationManager = CurrencyOptimizationManager(this)
         notificationManager = NotificationManager(this)
         languageGUI = LanguageGUI(this)
+        placedBlocksManager = PlacedBlocksManager(this)
         
         // Load configurations
         configManager.loadConfig()
@@ -76,6 +83,9 @@ class ZcashPlugin : JavaPlugin() {
         
         // Initialize database
         databaseManager.initialize()
+        
+        // Initialize placed blocks manager (anti-duplication)
+        placedBlocksManager.initialize()
         
         // Setup economy
         if (!economyManager.setupEconomy()) {
@@ -125,6 +135,9 @@ class ZcashPlugin : JavaPlugin() {
         hologramManager.removeAllHolograms()
         notificationManager.clearAllNotifications()
         
+        // Save and shutdown placed blocks manager
+        placedBlocksManager.shutdown()
+        
         // Close database connection
         databaseManager.close()
         
@@ -148,7 +161,9 @@ class ZcashPlugin : JavaPlugin() {
         val pluginManager = server.pluginManager
         pluginManager.registerEvents(EntityDeathListener(this), this)
         pluginManager.registerEvents(BlockBreakListener(this), this)
+        pluginManager.registerEvents(BlockPlaceListener(this), this)
         pluginManager.registerEvents(PlayerPickupListener(this), this)
+        pluginManager.registerEvents(InventoryPickupListener(this), this)
         pluginManager.registerEvents(PlayerQuitListener(this), this)
         pluginManager.registerEvents(languageGUI, this)
     }
